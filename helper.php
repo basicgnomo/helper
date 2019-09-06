@@ -4,7 +4,11 @@ function helper($nomeStr,$data=null){
   $nomeDoRepositorioStr=@$arr[0];
   $nomeDoPacoteStr=@$arr[1];
   $str=ROOT.'call/callgnomo/'.$nomeDoRepositorioStr;
-  //$str=ROOT.$nomeDoRepositorioStr;
+  if(isset($_ENV['CALL'],$_ENV['SITE_MODE'])){
+    if($_ENV['SITE_MODE']=='dev'){
+      $str=ROOT.$nomeDoRepositorioStr;
+    }
+  }
   $str.='/helper/'.$nomeDoPacoteStr.'.php';
   if(file_exists($str)){
     if(is_array($data)){
